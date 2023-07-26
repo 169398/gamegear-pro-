@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="style.css">
+
+  <title>product page</title>
+  <style>
+    /* CSS styles */
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+    
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 5px;
+    }
+    
+    .form-actions {
+      margin-top: 20px;
+    }
+    
+    .form-actions button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .form-actions button:first-child {
+      background-color: #053310;
+    }
+    .body{
+        padding-left:6% ;
+        padding-right: 0%;
+        background-color: #ff9800;
+        height: 0%;
+        padding-top: 30%;
+        padding-bottom: 10%;
+        
+
+    }
+  </style>
+</head>
+<div class="body">
+  <div class="container">
+    <h2>ADD YOUR ITEMS TO CART</h2>
+    
+    <form>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1">
+      </div>
+      
+      <div class="form-actions">
+        <button id="add-to-cart" type="button">Add to Cart</button>
+        <button id="continue-shopping" type="button">Continue Shopping</button>
+      </div>
+    </form>
+  </div>
+  </div>
+  
+  <script>
+    // JavaScript code
+    document.getElementById('add-to-cart').addEventListener('click', function() {
+      var quantity = document.getElementById('quantity').value;
+      addToCart(quantity);
+    });
+    
+    document.getElementById('continue-shopping').addEventListener('click', function() {
+      window.location.href = 'index.html'; // Replace 'home.html' with the actual home page URL
+    });
+    
+    function addToCart(quantity) {
+      // You can implement the logic to add the order to the cart here
+      
+      // Example: Logging the quantity to the console
+      console.log('Quantity:', quantity);
+      
+      // Show a confirmation message to the user
+      alert('Order added to cart!');
+    }
+  </script>
+</body>
+</html>

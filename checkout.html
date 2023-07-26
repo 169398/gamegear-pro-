@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section>
+    <div class="container">
+      <h1>Checkout</h1>
+      <form action="backend.php" method="POST">
+        <div class="payment-options">
+          <h2>Payment Options</h2>
+          
+          <label>
+            <input type="radio" name="payment" value="mpesa">
+            M-Pesa
+          </label>
+        </div>
+        <div class="location">
+          <h2>Location</h2>
+          <label for="town">Nearest Town:</label>
+          <input type="text" id="town" name="town" required>
+        </div>
+        <div class="mpesa-details">
+          <h2>M-Pesa Details</h2>
+          <label for="phone">Phone Number:</label>
+          <input type="text" id="phone" name="phone" required>
+        </hr>
+        <br>
+        <button type="submit" name="placeOrder">Place Order</button>
+      </form>
+    </div>
+    <div class="added">After placing this order our team will contact you to give you more information on your shipping process<br><br>
+        THANK YOU FOR SHOPPING WITH US
+
+    </div>
+    
+  </section>
+</body>
+
+</html>
+

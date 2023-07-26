@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Cart</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* CSS styles for the cart items */
+    .cart-item {
+      margin-bottom: 10px;
+    }
+    
+    /* CSS styles for the remove button */
+    .remove-button {
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cart</h1>
+  <div id="cartItemsContainer"></div>
+  <p>Total: <span id="total"></span></p>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Function to remove an item from the cart
+      function removeItem(itemId) {
+        $.ajax({
+          url: '/api/cart/remove', // Replace with your server's API endpoint for removing an item from the cart
+          method: 'POST',
+          data: { itemId: itemId },
+          success: function(response) {
+            // Item successfully removed from the cart, reload the page to update the cart display
+            location.reload();
+          },
+          error: function(error) {
+            console.log('Error removing item from cart:', error);
+          }
+        });
+      }
+
+      // Retrieve cart items from the server
+      $.ajax({
+        url: '/api/cart/items', // Replace with your server's API endpoint for retrieving cart items
+        method: 'GET',
+        success: function(response) {
+          // Process the response and generate HTML to display cart items
+          var cartItemsHTML = '';
+          var total = 0;
+
+          // Iterate over the cart items
+          response.items.forEach(function(item) {
+            // Generate HTML for each item
+            var itemHTML = '<div class="cart-item">';
+            itemHTML += '<h3>' + item.name + '</h3>';
+            itemHTML += '<p>Price: $' + item.price + '</p>';
+            itemHTML += '<p><span class="remove-button" onclick="removeItem(' + item.id + ')">Remove</span></p>';
+            itemHTML += '</div>';
+
+            cartItemsHTML += itemHTML;
+            total += item.price;
+          });
+
+          // Display the cart items and total in the HTML
+          $('#cartItemsContainer').html(cartItemsHTML);
+          $('#total').text('$' + total);
+        },
+        error: function(error) {
+          console.log('Error retrieving cart items:', error);
+        }
+      });
+    });
+  </script>
+  <div class="proceed">
+    <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+  </div>
+</body>
+</html>
